@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: health-analysis-api
+    env: python
+    plan: free
+
+    buildCommand: pip install -r requirements.txt
+
+    startCommand: gunicorn health_analysis_api:app
+
+    envVars:
+      - key: OPENAI_API_KEY
+        value: ${OPENAI_API_KEY}
+      - key: SMTP_PASSWORD
+        value: ${SMTP_PASSWORD}
